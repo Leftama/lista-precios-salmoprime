@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salmón Premium del Sur - Lista de Precios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a4d68 0%, #05668d 50%, #028090 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(240,248,255,0.95) 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #0a4d68;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #d4837d;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #555;
+            font-style: italic;
+        }
+
+        .product-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .product-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-title {
+            font-size: 2em;
+            color: #0a4d68;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #d4837d;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3f8 100%);
+            border-left: 5px solid #028090;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            background: linear-gradient(135deg, #e6f3f8 0%, #d4e9f0 100%);
+            transform: translateX(5px);
+        }
+
+        .price-card.featured {
+            background: linear-gradient(135deg, #d4837d 0%, #e89b95 100%);
+            border-left: 5px solid #a85a56;
+            color: white;
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(212, 131, 125, 0.4);
+        }
+
+        .price-card.featured .price {
+            color: white;
+            font-weight: bold;
+        }
+
+        .price-card.featured .quantity {
+            color: rgba(255,255,255,0.95);
+        }
+
+        .price {
+            font-size: 1.8em;
+            color: #0a4d68;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .quantity {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #ffd700;
+            color: #0a4d68;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #d4837d 0%, #e89b95 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #d4837d;
+            padding: 18px 45px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .contact-section {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .contact-section h2 {
+            font-size: 2.2em;
+            color: #0a4d68;
+            margin-bottom: 30px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e6f3f8 100%);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .contact-label {
+            font-weight: bold;
+            color: #0a4d68;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .contact-link {
+            color: #028090;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        /* Tablets y pantallas medianas */
+        @media (max-width: 1024px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .product-section {
+                padding: 30px;
+            }
+
+            .cta-section {
+                padding: 50px 30px;
+            }
+        }
+
+        /* Tablets pequeñas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+            }
+
+            .tagline {
+                font-size: 1em;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+
+            .product-section {
+                padding: 25px 20px;
+            }
+
+            .product-title {
+                font-size: 1.6em;
+            }
+
+            .price {
+                font-size: 1.5em;
+            }
+
+            .quantity {
+                font-size: 1em;
+            }
+
+            .cta-section h2 {
+                font-size: 2em;
+            }
+
+            .cta-section p {
+                font-size: 1.1em;
+            }
+
+            .cta-button {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-section h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Móviles (Android e iPhone) */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+                line-height: 1.2;
+            }
+
+            .subtitle {
+                font-size: 1em;
+            }
+
+            .tagline {
+                font-size: 0.9em;
+            }
+
+            header {
+                padding: 30px 15px;
+                margin-bottom: 20px;
+            }
+
+            .product-section {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+            }
+
+            .product-title {
+                font-size: 1.4em;
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+
+            .icon {
+                font-size: 1.5em;
+            }
+
+            .price-card {
+                padding: 15px;
+                margin-bottom: 12px;
+            }
+
+            .price {
+                font-size: 1.3em;
+            }
+
+            .quantity {
+                font-size: 0.95em;
+            }
+
+            .badge {
+                display: block;
+                margin: 10px 0 0 0;
+                font-size: 0.8em;
+            }
+
+            .cta-section {
+                padding: 40px 20px;
+                margin: 30px 0;
+            }
+
+            .cta-section h2 {
+                font-size: 1.6em;
+                line-height: 1.3;
+            }
+
+            .cta-section p {
+                font-size: 1em;
+                margin-bottom: 25px;
+            }
+
+            .cta-button {
+                padding: 14px 30px;
+                font-size: 1em;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .contact-section {
+                padding: 30px 20px;
+            }
+
+            .contact-section h2 {
+                font-size: 1.5em;
+            }
+
+            .contact-item {
+                padding: 20px;
+            }
+
+            .contact-icon {
+                font-size: 2em;
+            }
+
+            .contact-label {
+                font-size: 1em;
+            }
+
+            .contact-link {
+                font-size: 1em;
+                word-break: break-word;
+            }
+
+            .note {
+                padding: 12px;
+                font-size: 0.9em;
+            }
+
+            footer {
+                padding: 20px 10px;
+                font-size: 0.85em;
+            }
+        }
+
+        /* iPhone SE y pantallas muy pequeñas */
+        @media (max-width: 375px) {
+            h1 {
+                font-size: 1.4em;
+            }
+
+            .product-title {
+                font-size: 1.2em;
+            }
+
+            .price {
+                font-size: 1.2em;
+            }
+
+            .cta-section h2 {
+                font-size: 1.4em;
+            }
+        }
+
+        .note {
+            background: #fff9e6;
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+            font-size: 0.95em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐟 Salmón Premium del Sur</h1>
+            <p class="subtitle">Lista de Precios Mayorista</p>
+            <p class="tagline">Calidad excepcional directo desde el sur de Chile</p>
+        </header>
+
+        <!-- Filete de Salmón -->
+        <div class="product-section">
+            <h2 class="product-title">
+                <span class="icon">🔪</span>
+                Filete de Salmón
+            </h2>
+            
+            <div class="price-card">
+                <div class="price">$9.790 + IVA/kg</div>
+                <div class="quantity">Compras sobre 50 kilos</div>
+            </div>
+
+            <div class="price-card featured">
+                <div class="price">$10.490 + IVA/kg <span class="badge">RECOMENDADO</span></div>
+                <div class="quantity">Compras entre 15 kg y 49 kg</div>
+            </div>
+
+            <div class="price-card">
+                <div class="price">$10.990 + IVA/kg</div>
+                <div class="quantity">Compras entre 5 kg y 14 kg</div>
+            </div>
+
+            <div class="price-card">
+                <div class="price">$12.990 + IVA/kg</div>
+                <div class="quantity">Compras menores a 5 kilos</div>
+            </div>
+        </div>
+
+        <!-- Porción de Salmón -->
+        <div class="product-section">
+            <h2 class="product-title">
+                <span class="icon">🍽️</span>
+                Porción de Salmón
+            </h2>
+            
+            <div class="price-card">
+                <div class="price">$17.600 + IVA/kg</div>
+                <div class="quantity">Compras entre 4.5 kg y 10 kg</div>
+            </div>
+
+            <div class="price-card">
+                <div class="price">$16.500 + IVA/kg</div>
+                <div class="quantity">Compras sobre 10 kilos</div>
+            </div>
+        </div>
+
+        <!-- Slice Ahumado -->
+        <div class="product-section">
+            <h2 class="product-title">
+                <span class="icon">🔥</span>
+                Slice Ahumado de Salmón
+            </h2>
+            
+            <div class="price-card">
+                <div class="price">$19.950/kg</div>
+                <div class="quantity">Compras entre 5 kg y 10 kg</div>
+            </div>
+
+            <div class="price-card">
+                <div class="price">$18.500/kg</div>
+                <div class="quantity">Compras sobre 10 kilos</div>
+            </div>
+        </div>
+
+        <!-- B&P de Salmón -->
+        <div class="product-section">
+            <h2 class="product-title">
+                <span class="icon">📦</span>
+                B&P de Salmón
+            </h2>
+            
+            <div class="price-card">
+                <div class="price">$15.990 + IVA/kg</div>
+                <div class="quantity">Compras entre 5 kg y 15 kg</div>
+            </div>
+
+            <div class="price-card">
+                <div class="price">$15.200 + IVA/kg</div>
+                <div class="quantity">Compras sobre 15 kilos</div>
+            </div>
+
+            <div class="note">
+                💡 <strong>Nota:</strong> Todos los precios son válidos para pedidos mayoristas. Consulte por disponibilidad y tiempos de entrega.
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>¿Listo para hacer tu pedido?</h2>
+            <p>Contáctanos ahora y disfruta del mejor salmón del sur de Chile</p>
+            <a href="#contacto" class="cta-button">¡Solicitar Cotización!</a>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section" id="contacto">
+            <h2>Contacto</h2>
+            <p style="color: #666; margin-bottom: 20px;">Estamos aquí para atenderte</p>
+            
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-label">Correo Electrónico</div>
+                    <a href="mailto:ventas@salmonpremium.cl" class="contact-link">ventas@salmonpremium.cl</a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <div class="contact-label">WhatsApp</div>
+                    <a href="https://wa.me/56912345678" class="contact-link" target="_blank">+56 9 1234 5678</a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">📷</div>
+                    <div class="contact-label">Instagram</div>
+                    <a href="https://instagram.com/salmonpremium" class="contact-link" target="_blank">@salmonpremium</a>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Salmón Premium del Sur © 2024 - Calidad y Frescura Garantizada</p>
+        </footer>
+    </div>
+</body>
+</html>
